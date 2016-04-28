@@ -173,6 +173,7 @@ namespace FUELeesin.Modes
             {
                 PassiveStacks = 2;
                 passiveTimer = Environment.TickCount + 3000;
+                LastSpellTime = Environment.TickCount;
             }
 
             if (args.SData.Name.Equals("BlindMonkQOne", StringComparison.InvariantCultureIgnoreCase))

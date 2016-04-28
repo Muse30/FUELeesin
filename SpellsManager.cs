@@ -134,22 +134,20 @@ namespace FUELeesin
 
             var dmg = 0f;
 
-            float subHP = 0;
-            bool monster = false;
             switch (slot)
             {
                 case SpellSlot.Q:
                     if (Q.IsReady())
                     {
-                        //Information of W damage
-                        dmg += new float[] { 50, 80, 110, 140, 170 }[sLevel] + 0.9f * AD;
+                        //Information of Q damage
+                        dmg += new float[] { 50, 80, 110, 140, 170 }[sLevel - 1] + 0.9f * AD;
                     }
                     break;
                 case SpellSlot.W:
                     if (W.IsReady())
                     {
                         //Information of W damage
-                        dmg += new float[] {0, 0, 0, 0, 0}[sLevel] + 1f*AD;
+                        dmg += new float[] { 0, 0, 0, 0, 0 }[sLevel];
                     }
                     break;
                 case SpellSlot.E:
@@ -157,13 +155,6 @@ namespace FUELeesin
                     {
                         //Information of E damage
                         dmg += new float[] { 60, 95, 130, 165, 200 }[sLevel - 1] + 1 * AD;
-                    }
-                    break;
-                case SpellSlot.R:
-                    if (R.IsReady())
-                    {
-                        //Information of R damage
-                        dmg += new float[] {200, 400, 600}[sLevel]+ 0.20f*AD;
                     }
                     break;
             }

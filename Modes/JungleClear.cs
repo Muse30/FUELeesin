@@ -5,6 +5,7 @@ using static FUELeesin.Menus;
 using static FUELeesin.SpellsManager;
 using static FUELeesin.Extensions;
 using System.Linq;
+using EloBuddy;
 
 namespace FUELeesin.Modes
 {
@@ -17,6 +18,7 @@ namespace FUELeesin.Modes
         /// Put in here what you want to do when the mode is running
         /// </summary>
         public static void Execute()
+
         {
             var minion = EntityManager.MinionsAndMonsters.GetJungleMonsters(null, Q.Range).FirstOrDefault();
 
@@ -25,27 +27,11 @@ namespace FUELeesin.Modes
                 return;
             }
 
-            if (PassiveStacks > 0 || LastSpell + 400 > Environment.TickCount)
+            if (JungleClearMenu.GetCheckBoxValue("Jpassive"))
             {
-                return;
-            }
-
-            if (W.IsReady() && JungleClearMenu.GetCheckBoxValue("wUse"))
-            {
-                if (Environment.TickCount - LastE <= 50)
+                if (PassiveStacks > 0 || LastSpell + 400 > Environment.TickCount)
                 {
                     return;
-                }
-
-                if (WState && minion.IsValidTarget(myHero.GetAutoAttackRange()))
-                {
-                    W.Cast(myHero);
-                    LastW = Environment.TickCount;
-                }
-
-                if (!WState && LastW + 1000 < Environment.TickCount)
-                {
-                    W.Cast(myHero);
                 }
             }
 
@@ -55,7 +41,6 @@ namespace FUELeesin.Modes
                 {
                     E.Cast();
                     LastSpell = Environment.TickCount;
-                    return;
                 }
 
                 if (!EState && E.IsInRange(minion) && LastE + 400 < Environment.TickCount)
@@ -67,15 +52,40 @@ namespace FUELeesin.Modes
 
             if (Q.IsReady() && JungleClearMenu.GetCheckBoxValue("qUse"))
             {
-                if (QState && minion.Distance(myHero) < Q.Range && LastQ + 200 < Environment.TickCount)
+                Q.Cast(minion);
+                LastSpell = Environment.TickCount;
+
+                foreach (var jungleMobs in ObjectManager.Get<Obj_AI_Minion>().Where(o => o.IsValidTarget(Q.Range) && o.Team == GameObjectTeam.Neutral && o.IsVisible && !o.IsDead))
                 {
-                    Q.Cast(minion);
+
+                    if (EntityManager.MinionsAndMonsters.GetJungleMonsters(null, Q.Range).Any())
+                    {
+                        if (jungleMobs.HasQBuff())
+                        {
+                            Q2.Cast();
+                            LastSpell = Environment.TickCount;
+                        }
+                    }
+                }
+            }
+
+            if (W.IsReady()  && JungleClearMenu.GetCheckBoxValue("wUse"))
+            {
+                if (WState)
+                {
+                    myHero.GetAutoAttackRange();
+                    W.Cast(myHero);
                     LastSpell = Environment.TickCount;
+                }
+
+                if (WState)
+                {
                     return;
                 }
 
-                Q2.Cast();
-
+                W2.Cast();
+                LastSpell = Environment.TickCount;
+                return;
             }
         }
     }

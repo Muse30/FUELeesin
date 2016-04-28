@@ -1,30 +1,3 @@
-#region LICENSE
-
-/*
- Copyright 2014 - 2015 LeagueSharp
- Geometry.cs is part of LeagueSharp.Common.
- 
- LeagueSharp.Common is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- LeagueSharp.Common is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with LeagueSharp.Common. If not, see <http://www.gnu.org/licenses/>.
-*/
-
-#endregion
-
-#region
-
-
-
-#endregion
 
 namespace FUELeesin
 {
@@ -846,50 +819,7 @@ namespace FUELeesin
         /// </summary>
         /// <param name="sList">The polygon list.</param>
         /// <returns></returns>
-        public static List<Polygon> JoinPolygons(this List<Polygon> sList)
-        {
-            var p = ClipPolygons(sList);
-            List<List<IntPoint>> tList = new List<List<IntPoint>>();
 
-            Clipper c = new Clipper();
-            c.AddPaths(p, PolyType.ptClip, true);
-            c.Execute(ClipType.ctUnion, tList, PolyFillType.pftNonZero, PolyFillType.pftNonZero);
-
-            return ToPolygons(tList);
-        }
-
-        /// <summary>
-        /// Joins all the polygones.
-        /// ClipType: http://www.angusj.com/delphi/clipper/documentation/Docs/Units/ClipperLib/Types/ClipType.htm
-        /// PolyFillType: http://www.angusj.com/delphi/clipper/documentation/Docs/Units/ClipperLib/Types/PolyFillType.htm
-        /// </summary>
-        /// <param name="sList">The s list.</param>
-        /// <param name="cType">Type of the c.</param>
-        /// <param name="pType">Type of the p.</param>
-        /// <param name="pFType1">The p f type1.</param>
-        /// <param name="pFType2">The p f type2.</param>
-        /// <returns></returns>
-        public static List<Polygon> JoinPolygons(this List<Polygon> sList, ClipType cType, PolyType pType = PolyType.ptClip, PolyFillType pFType1 = PolyFillType.pftNonZero, PolyFillType pFType2 = PolyFillType.pftNonZero)
-        {
-            var p = ClipPolygons(sList);
-            List<List<IntPoint>> tList = new List<List<IntPoint>>();
-
-            Clipper c = new Clipper();
-            c.AddPaths(p, pType, true);
-            c.Execute(cType, tList, pFType1, pFType2);
-
-            return ToPolygons(tList);
-        }
-
-        /// <summary>
-        /// Converts a list of list points to a polygon.
-        /// </summary>
-        /// <param name="v">The v.</param>
-        /// <returns></returns>
-        public static List<Polygon> ToPolygons(this List<List<IntPoint>> v)
-        {
-            return v.Select(path => path.ToPolygon()).ToList();
-        }
 
         /// <summary>
         /// Returns the position where the vector will be after t(time) with s(speed) and delay.
@@ -921,15 +851,7 @@ namespace FUELeesin
         /// </summary>
         /// <param name="v">The int points.</param>
         /// <returns></returns>
-        public static Polygon ToPolygon(this List<IntPoint> v)
-        {
-            var polygon = new Polygon();
-            foreach (var point in v)
-            {
-                polygon.Add(new Vector2(point.X, point.Y));
-            }
-            return polygon;
-        }
+
 
         /// <summary>
         /// Clips the polygons.

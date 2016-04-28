@@ -37,6 +37,7 @@ namespace FUELeesin
         public static Vector3 mouse = Game.CursorPos;
         public static float passiveTimer;
         public static bool q2Done;
+        public static long LastSpellTime;
         public static float q2Timer;
         public static bool reCheckWard = true;
         public static float resetTime;
@@ -308,6 +309,16 @@ namespace FUELeesin
                 ObjectManager.Get<Obj_AI_Base>()
                     .Where(a => a.IsValidTarget(1300))
                     .FirstOrDefault(unit => unit.HasQBuff());
+        }
+
+        public static bool HasEBuff(this Obj_AI_Base unit)
+        {
+            return (unit.HasAnyBuffs("BlindMonkEOne") || unit.HasAnyBuffs("BlindMonkEOne"));
+        }
+
+        public static Obj_AI_Base BuffedEnemy
+        {
+            get { return ObjectManager.Get<Obj_AI_Base>().FirstOrDefault(unit => unit.IsEnemy && unit.HasQBuff()); }
         }
 
         public static Tuple<int, List<AIHeroClient>> GetEHits()

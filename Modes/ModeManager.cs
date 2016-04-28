@@ -9,6 +9,10 @@ using EloBuddy.SDK.Events;
 using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
 using static FUELeesin.Menus;
+using FUELeesin;
+using SharpDX;
+using Color = System.Drawing.Color;
+
 
 namespace FUELeesin.Modes
 {
@@ -22,6 +26,8 @@ namespace FUELeesin.Modes
             Game.OnTick += Game_OnTick;
         }
 
+        private static Geometry2.Polygon toPolygon;
+
         private static AIHeroClient myHero
         {
             get { return Player.Instance; }
@@ -31,7 +37,11 @@ namespace FUELeesin.Modes
         /// This event is triggered every tick of the game
         /// </summary>
         /// <param name="args"></param>
-        private static void Game_OnTick(EventArgs args)
+        /// 
+
+
+
+            private static void Game_OnTick(EventArgs args)
         {
             if (Extensions.doubleClickReset <= Environment.TickCount && Extensions.clickCount != 0)
             {
@@ -160,6 +170,37 @@ namespace FUELeesin.Modes
                     SpellsManager.R.Cast(target);
                 }
             }
+
+
+            if (!ComboMenu.GetCheckBoxValue("rkickkill") || !SpellsManager.R.IsReady())
+            {
+                return;
+            }
+
+            AIHeroClient t =
+                EntityManager.Heroes.Enemies.Find(
+                    e =>
+                        e.IsValidTarget(SpellsManager.Q.Range + SpellsManager.W.Range) && !e.IsDead && !e.IsZombie &&
+                        e.Distance(Game.CursorPos) < e.Distance(ObjectManager.Player.Position) &&
+
+                        !e.IsValidTarget(myHero.GetAutoAttackRange(null) + 65) && e.Health < e.MaxHealth * 0.14);
+
+            if (t == null)
+            {
+                return;
+            }
+
+            foreach (var enemy in EntityManager.Heroes.Enemies.Where(e => e.Distance(t.Position) < 800 && e.NetworkId != t.NetworkId && ObjectManager.Player.Distance(e) < ObjectManager.Player.Distance(t)))
+            {
+                toPolygon = new Geometry2.Rectangle(t.Position.To2D(), t.Position.To2D().Extend(ObjectManager.Player.Position.To2D(), 800), 100).ToPolygon();
+                toPolygon.Draw(Color.Blue, 3);
+
+                if (toPolygon.IsInside(enemy.Position.To2D()))
+                {
+                    SpellsManager.R.Cast(enemy);
+                }
+            }
+
 
             if (ComboMenu.GetCheckBoxValue("rkick"))
             {

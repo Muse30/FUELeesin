@@ -36,6 +36,7 @@ namespace FUELeesin
             Orbwalker.OnPostAttack += Orbwalker_OnPostAttack;
             GameObject.OnCreate += OnCreate;
             GameObject.OnDelete += GameObject_OnDelete;
+            Smiter.Init();
             Game.OnWndProc += Game_OnWndProc;
         }
     }

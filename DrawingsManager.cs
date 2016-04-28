@@ -36,9 +36,9 @@ namespace FUELeesin
             }
 
             var playerPos = Drawing.WorldToScreen(ObjectManager.Player.Position);
-            if (DrawingsMenu.GetCheckBoxValue("drawinsectext"))
+            if (InsecMenu.GetKeyBindValue("insecflash"))
             {
-                Drawing.DrawText(playerPos.X, playerPos.Y + 40, Color.White, "Flash Insec enabled");
+                Drawing.DrawText(playerPos.X - 55, playerPos.Y + 40, Color.Yellow, "Flash Insec enabled");
             }
 
             if (DrawingsMenu.GetCheckBoxValue("drawinseclines") && R.IsReady())

@@ -61,10 +61,12 @@ namespace FUELeesin
             ComboMenu.CreateCheckBox(" - Use Q1 Ks", "q1Useks");
             ComboMenu.CreateCheckBox(" - Use Q2 Ks", "q2Useks");
             ComboMenu.CreateCheckBox(" - Use E Ks", "eUseks");
-            ComboMenu.CreateCheckBox(" - Wait for Passive", "Cpassive", false);
-            ComboMenu.Add("starCombo", new KeyBind("Use Star Combo", false, KeyBind.BindTypes.HoldActive, 'T'));
+            ComboMenu.CreateCheckBox(" - Use Passive?", "Cpassive", false);
+            ComboMenu.Add("starCombo", new KeyBind("Use Star Combo", false, KeyBind.BindTypes.HoldActive, 'Y'));
             ComboMenu.CreateCheckBox(" - Kick multiple targets:", "rkick");
             ComboMenu.CreateSlider("Min [{0}] targets to use R", "rkickcount", 2, 2, 4);
+            ComboMenu.CreateCheckBox(" - Kick to kill enemy behind:", "rkickkill");
+
 
 
             HarassMenu.AddGroupLabel("Spells");
@@ -83,9 +85,9 @@ namespace FUELeesin
             JungleClearMenu.AddGroupLabel("Spells");
             JungleClearMenu.CreateCheckBox(" - Use Q", "qUse");
             JungleClearMenu.CreateCheckBox(" - Use W", "wUse");
-            JungleClearMenu.CreateCheckBox(" - Use E", "eUse");
+            JungleClearMenu.CreateCheckBox(" - Use E", "eUse");      
             JungleClearMenu.AddGroupLabel("Settings");
-            JungleClearMenu.CreateCheckBox(" - Passive Control in jungle", "Jpassive", false);
+            JungleClearMenu.CreateCheckBox("Use Passive", "Jpassive", true);
 
             WardJumpMenu.AddGroupLabel("Spells");
             WardJumpMenu.Add("wardjump", new KeyBind("Wardjump :", false, KeyBind.BindTypes.HoldActive, 'G'));
@@ -96,15 +98,16 @@ namespace FUELeesin
 
 
             InsecMenu.AddGroupLabel("Spells");
-            InsecMenu.Add("insec", new KeyBind("Insec :", false, KeyBind.BindTypes.HoldActive, 'A'));
-            InsecMenu.Add("insecflash", new KeyBind("Flash + R :", false, KeyBind.BindTypes.HoldActive, 'U'));
-            InsecMenu.CreateCheckBox(" - Orbwalking when insec", "insecorbw");
-            InsecMenu.CreateCheckBox(" - Insec to allies", "insecally");
-            InsecMenu.CreateCheckBox(" - Insec to original pos", "insecpos");
-            InsecMenu.CreateCheckBox(" - Flash Insec when no ward", "insecnoward", false);
-            InsecMenu.CreateCheckBox(" - Check for units to Insec", "inseccheck");
+            InsecMenu.Add("insec", new KeyBind("Insec :", false, KeyBind.BindTypes.HoldActive, 'T'));
+            InsecMenu.Add("insecflash", new KeyBind("Flash + R :", false, KeyBind.BindTypes.HoldActive, 'A'));
+            InsecMenu.CreateCheckBox(" - Orbwalk?", "insecorbw");
+            InsecMenu.CreateCheckBox(" - Insec to allies?", "insecally");
+            InsecMenu.CreateCheckBox(" - Insec to original pos?", "insecpos");
+            InsecMenu.CreateCheckBox(" - Flash Insec when no ward?", "insecnoward", false);
+            InsecMenu.CreateCheckBox(" - Use minions [Q]", "inseccheck");
             InsecMenu.CreateCheckBox(" - Left click target to Insec", "insecMode");
             InsecMenu.CreateCheckBox(" - Click Insec", "clickInsec");
+            InsecMenu.AddLabel("Click anywhere and you will see a blue circle, then click the enemy and it will insec to that position");
             InsecMenu.CreateSlider("Ally Bonus Range", "bonusrangea", 0, 0, 1000);
             InsecMenu.CreateSlider("Tower Bonus Range", "bonusranget", 0, 0, 1000);
 
@@ -130,7 +133,7 @@ namespace FUELeesin
             MiscMenu.CreateSlider("Delay slider", "delaySlider", 200, 150, 500);
             MiscMenu.CreateCheckBox(" - Smite", "smiteks");
             MiscMenu.CreateCheckBox(" - Ignite", "igniteks");
-            MiscMenu.CreateCheckBox(" - Smite Q", "smiteq", false);
+            MiscMenu.CreateCheckBox(" - Smite Q", "smiteq", true);
 
 
             DrawingsMenu.AddGroupLabel("Setting");
