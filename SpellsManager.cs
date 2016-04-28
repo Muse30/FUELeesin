@@ -79,7 +79,9 @@ namespace FUELeesin
             }
 
             SpellList.Add(Q);
+            SpellList.Add(Q2);
             SpellList.Add(W);
+            SpellList.Add(W2);
             SpellList.Add(E);
             SpellList.Add(R);
 
