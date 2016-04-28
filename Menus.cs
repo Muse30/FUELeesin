@@ -57,12 +57,14 @@ namespace FUELeesin
             ComboMenu.CreateSlider("Min [{0}] stacks on Passive", "passivestacks", 1,1,2);
             ComboMenu.CreateCheckBox(" - Wardjump in combo", "wardjumpC");
             ComboMenu.CreateCheckBox(" - Out of AA range - Wardjump", "wardjumpCAA");
+            ComboMenu.AddSeparator();
             ComboMenu.CreateCheckBox(" - Use R Ks", "rUseks");
             ComboMenu.CreateCheckBox(" - Use Q1 Ks", "q1Useks");
             ComboMenu.CreateCheckBox(" - Use Q2 Ks", "q2Useks");
             ComboMenu.CreateCheckBox(" - Use E Ks", "eUseks");
             ComboMenu.CreateCheckBox(" - Use Passive?", "Cpassive", false);
             ComboMenu.Add("starCombo", new KeyBind("Use Star Combo", false, KeyBind.BindTypes.HoldActive, 'Y'));
+            ComboMenu.AddSeparator();
             ComboMenu.CreateCheckBox(" - Kick multiple targets:", "rkick");
             ComboMenu.CreateSlider("Min [{0}] targets to use R", "rkickcount", 2, 2, 4);
             ComboMenu.CreateCheckBox(" - Kick to kill enemy behind:", "rkickkill");
@@ -91,6 +93,7 @@ namespace FUELeesin
 
             WardJumpMenu.AddGroupLabel("Spells");
             WardJumpMenu.Add("wardjump", new KeyBind("Wardjump :", false, KeyBind.BindTypes.HoldActive, 'G'));
+            WardJumpMenu.AddSeparator();
             WardJumpMenu.CreateCheckBox(" - Jump to mouse", "mousej");
             WardJumpMenu.CreateCheckBox(" - Jump to minions", "minionsj");
             WardJumpMenu.CreateCheckBox(" - Jump to champions", "champsj");
@@ -131,6 +134,7 @@ namespace FUELeesin
             MiscMenu.CreateComboBox("2nd Spell to focus", "secondFocus", new List<string> {"Q", "W", "E"}, 1);
             MiscMenu.CreateComboBox("3rd Spell to focus", "thirdFocus", new List<string> {"Q", "W", "E"}, 2);
             MiscMenu.CreateSlider("Delay slider", "delaySlider", 200, 150, 500);
+            MiscMenu.AddSeparator();
             MiscMenu.CreateCheckBox(" - Smite", "smiteks");
             MiscMenu.CreateCheckBox(" - Ignite", "igniteks");
             MiscMenu.CreateCheckBox(" - Smite Q", "smiteq", true);

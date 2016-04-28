@@ -64,7 +64,6 @@ namespace FUELeesin
             SmiteMenu.Add("QSmite", new CheckBox("Q -> Smite -> Q"));
             SmiteMenu.Add("drawSmite", new CheckBox("Draw Smite Range"));
             SmiteMenu.Add("drawSmite1", new CheckBox("Draw Smite Status"));
-
             SmiteMenu.AddLabel("Camps");
             SmiteMenu.Add("SRU_Red", new CheckBox("Red"));
             SmiteMenu.Add("SRU_Blue", new CheckBox("Blue"));
