@@ -142,21 +142,28 @@ namespace FUELeesin
                     if (Q.IsReady())
                     {
                         //Information of Q damage
-                        dmg += new float[] { 50, 80, 110, 140, 170 }[sLevel - 1] + 0.9f * AD;
+                        dmg += new float[] { 15, 40, 65, 90, 115 }[sLevel] + new[] { 0.6f, 0.65f, 0.7f, 0.75f, 0.8f }[sLevel] * AD;
                     }
                     break;
                 case SpellSlot.W:
                     if (W.IsReady())
                     {
                         //Information of W damage
-                        dmg += new float[] { 0, 0, 0, 0, 0 }[sLevel];
+                        dmg += new float[] { 0, 0, 0, 0, 0 }[sLevel] + 1f * AD;
                     }
                     break;
                 case SpellSlot.E:
                     if (E.IsReady())
                     {
                         //Information of E damage
-                        dmg += new float[] { 60, 95, 130, 165, 200 }[sLevel - 1] + 1 * AD;
+                        dmg += new float[] { 0, 0, 0, 0, 0 }[sLevel];
+                    }
+                    break;
+                case SpellSlot.R:
+                    if (R.IsReady())
+                    {
+                        //Information of R damage
+                        dmg += new float[] { 20, 60, 95, 130, 165 }[sLevel] + 0.45f * AP;
                     }
                     break;
             }
